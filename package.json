@@ -1,0 +1,14 @@
+{
+  "name": "websocket-test-server",
+  "version": "1.0.0",
+  "description": "WebSocket 测试服务器，用于 Quest 应用测试",
+  "main": "websocket_test_server.js",
+  "scripts": {
+    "start": "node websocket_test_server.js"
+  },
+  "dependencies": {
+    "ws": "^8.14.2"
+  }
+}
+
+

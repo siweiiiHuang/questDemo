@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "com.example.oculusdemo.app-debug-38:/drawable_ic_service.xml.flat",
+        "source": "com.example.oculusdemo.app-main-40:/drawable/ic_service.xml"
+    },
+    {
+        "merged": "com.example.oculusdemo.app-debug-38:/xml_backup_rules.xml.flat",
+        "source": "com.example.oculusdemo.app-main-40:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.example.oculusdemo.app-debug-38:/layout_item_log.xml.flat",
+        "source": "com.example.oculusdemo.app-main-40:/layout/item_log.xml"
+    },
+    {
+        "merged": "com.example.oculusdemo.app-debug-38:/xml_file_paths.xml.flat",
+        "source": "com.example.oculusdemo.app-main-40:/xml/file_paths.xml"
+    },
+    {
+        "merged": "com.example.oculusdemo.app-debug-38:/layout_activity_main.xml.flat",
+        "source": "com.example.oculusdemo.app-main-40:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.oculusdemo.app-debug-38:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.oculusdemo.app-main-40:/xml/data_extraction_rules.xml"
+    }
+]

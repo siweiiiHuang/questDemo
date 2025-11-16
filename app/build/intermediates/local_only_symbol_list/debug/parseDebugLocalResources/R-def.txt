@@ -1,0 +1,33 @@
+R_DEF: Internal format may change without notice
+local
+color md_theme_on_primary
+color md_theme_on_surface
+color md_theme_primary
+color md_theme_surface
+drawable ic_service
+id btnSend
+id btnStart
+id btnStop
+id etMessage
+id rvLogs
+id tvConnection
+id tvLog
+id tvLogTitle
+id tvPayload
+layout activity_main
+layout item_log
+string app_name
+string btn_send_message
+string btn_start_service
+string btn_stop_service
+string connection_state_ble
+string connection_state_idle
+string connection_state_wifi
+string input_hint_message
+string log_title
+string placeholder_no_data
+string service_status_format
+style Theme.OculusPersistentCommDemo
+xml backup_rules
+xml data_extraction_rules
+xml file_paths

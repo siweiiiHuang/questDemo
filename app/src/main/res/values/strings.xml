@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Oculus 常驻通信 Demo</string>
+    <string name="service_status_format">当前通道：%1$s</string>
+    <string name="placeholder_no_data">暂无数据</string>
+    <string name="btn_start_service">启动服务</string>
+    <string name="btn_stop_service">停止服务</string>
+    <string name="btn_send_message">发送字符串</string>
+    <string name="input_hint_message">输入要发送的字符串</string>
+    <string name="log_title">最近日志</string>
+    <string name="connection_state_wifi">Wi-Fi</string>
+    <string name="connection_state_ble">BLE</string>
+    <string name="connection_state_idle">未连接</string>
+</resources>
+
+
