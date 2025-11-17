@@ -45,7 +45,6 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_service"
         android:supportsRtl="true"
-        android:testOnly="true"
         android:theme="@style/Theme.OculusPersistentCommDemo" >
         <activity
             android:name="com.example.oculusdemo.ui.MainActivity"
