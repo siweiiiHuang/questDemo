@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Oculus 常驻通信 Demo</string>
+    <string name="app_name">Oculus 通信助手</string>
     <string name="service_status_format">当前通道：%1$s</string>
     <string name="placeholder_no_data">暂无数据</string>
     <string name="btn_start_service">启动服务</string>

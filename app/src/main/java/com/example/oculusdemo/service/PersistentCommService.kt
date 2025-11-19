@@ -1,5 +1,6 @@
 package com.example.oculusdemo.service
 
+import android.Manifest
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -8,6 +9,7 @@ import android.bluetooth.BluetoothManager
 import android.content.ComponentCallbacks2
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
@@ -17,6 +19,7 @@ import android.os.IBinder
 import android.os.RemoteCallbackList
 import android.os.PowerManager
 import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleService
 import androidx.lifecycle.lifecycleScope
 import com.example.oculusdemo.IPersistentCommService
@@ -43,8 +46,10 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import java.util.UUID
-import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicBoolean
+import java.util.concurrent.locks.ReentrantLock
+import kotlin.concurrent.withLock
 
 class PersistentCommService : LifecycleService() {
 
@@ -53,6 +58,7 @@ class PersistentCommService : LifecycleService() {
     val state: StateFlow<ServiceState> = _state
 
     private val callbacks = RemoteCallbackList<ILogCallback>()
+    private val callbackLock = ReentrantLock()
     private val networkCallbackRegistered = AtomicBoolean(false)
 
     private lateinit var connectivityManager: ConnectivityManager
@@ -80,17 +86,6 @@ class PersistentCommService : LifecycleService() {
             fallbackToBle()
         }
     }
-
-    // Quest 真机使用：将 192.168.31.226 替换为你的 PC/手机 IP（示例）
-    // 模拟器使用：10.0.2.2
-    private var wifiEndpoint: Uri = Uri.parse("ws://192.168.31.226:8080")  // 当前 PC IP
-    // private var wifiEndpoint: Uri = Uri.parse("ws://10.0.2.2:8080")  // 模拟器地址
-    private val bleConfig = BleChannelManager.Config(
-        deviceName = "QuestPeripheral",
-        serviceUuid = UUID.fromString("0000feed-0000-1000-8000-00805f9b34fb"),
-        writeCharacteristicUuid = UUID.fromString("0000beef-0000-1000-8000-00805f9b34fb"),
-        notifyCharacteristicUuid = UUID.fromString("0000beee-0000-1000-8000-00805f9b34fb")
-    )
 
     private val binder = object : IPersistentCommService.Stub() {
         override fun startSession() {
@@ -175,6 +170,7 @@ class PersistentCommService : LifecycleService() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        super.onStartCommand(intent, flags, startId)
         when (intent?.action) {
             ACTION_RESURRECT -> {
                 val reason = intent.getStringExtra(EXTRA_RESURRECT_REASON).orEmpty()
@@ -290,6 +286,10 @@ class PersistentCommService : LifecycleService() {
 
     private fun fallbackToBle() {
         wifiClient.close()
+        if (!hasBlePermissions()) {
+            LogRepository.appendLog(TAG, "缺少 BLE 权限，无法扫描设备")
+            return
+        }
         // 不立即设置状态为 BLE，等待连接成功后再设置
         updateForeground("正在扫描 BLE 设备...")
         LogRepository.appendLog(TAG, "回退至 BLE，开始扫描设备")
@@ -374,37 +374,28 @@ class PersistentCommService : LifecycleService() {
     }
 
     private fun dispatchLogs(logs: List<String>) {
-        val size = callbacks.beginBroadcast()
-        repeat(size) {
-            try {
-                callbacks.getBroadcastItem(it).onLogChanged(ArrayList(logs))
-            } catch (_: Exception) {
-            }
-        }
-        callbacks.finishBroadcast()
+        withCallbacks { it.onLogChanged(ArrayList(logs)) }
     }
 
     private fun dispatchChannel(channel: ChannelType) {
-        val size = callbacks.beginBroadcast()
-        val value = channel.name
-        repeat(size) {
-            try {
-                callbacks.getBroadcastItem(it).onChannelChanged(value)
-            } catch (_: Exception) {
-            }
-        }
-        callbacks.finishBroadcast()
+        withCallbacks { it.onChannelChanged(channel.name) }
     }
 
     private fun dispatchPayload(payload: String) {
-        val size = callbacks.beginBroadcast()
-        repeat(size) {
+        withCallbacks { it.onPayload(payload) }
+    }
+
+    private inline fun withCallbacks(action: (ILogCallback) -> Unit) {
+        callbackLock.withLock {
+            val size = callbacks.beginBroadcast()
             try {
-                callbacks.getBroadcastItem(it).onPayload(payload)
-            } catch (_: Exception) {
+                repeat(size) {
+                    runCatching { action(callbacks.getBroadcastItem(it)) }
+                }
+            } finally {
+                callbacks.finishBroadcast()
             }
         }
-        callbacks.finishBroadcast()
     }
 
     private fun reloadConnectionConfig() {
@@ -455,6 +446,15 @@ class PersistentCommService : LifecycleService() {
             initialDelayMs = config.wifiReconnectInitialDelayMs,
             maxDelayMs = config.wifiReconnectMaxDelayMs
         )
+    }
+
+    private fun hasBlePermissions(): Boolean {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) == PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED
+        } else {
+            ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+        }
     }
 
     companion object {

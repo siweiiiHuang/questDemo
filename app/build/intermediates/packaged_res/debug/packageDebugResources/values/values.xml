@@ -5,6 +5,7 @@
     <color name="md_theme_primary">#0061A6</color>
     <color name="md_theme_surface">#F1F4F8</color>
     <string name="app_name">Oculus 常驻通信 Demo</string>
+    <string name="btn_open_settings">配置</string>
     <string name="btn_send_message">发送字符串</string>
     <string name="btn_start_service">启动服务</string>
     <string name="btn_stop_service">停止服务</string>
@@ -15,6 +16,21 @@
     <string name="log_title">最近日志</string>
     <string name="placeholder_no_data">暂无数据</string>
     <string name="service_status_format">当前通道：%1$s</string>
+    <string name="settings_btn_save">保存</string>
+    <string name="settings_invalid_number">请输入合法的数字</string>
+    <string name="settings_invalid_uuid">请输入合法的 UUID</string>
+    <string name="settings_label_ble_name">BLE 设备名</string>
+    <string name="settings_label_ble_notify">BLE 通知特征 UUID</string>
+    <string name="settings_label_ble_service">BLE Service UUID</string>
+    <string name="settings_label_ble_write">BLE 写特征 UUID</string>
+    <string name="settings_label_heartbeat_interval">心跳间隔（秒）</string>
+    <string name="settings_label_reconnect_attempts">最大重连次数</string>
+    <string name="settings_label_reconnect_initial">首次重连延迟（毫秒）</string>
+    <string name="settings_label_reconnect_max">最大重连延迟（毫秒）</string>
+    <string name="settings_label_telemetry">启用指标上报</string>
+    <string name="settings_label_watchdog">启用后台守护</string>
+    <string name="settings_label_wifi_endpoint">WebSocket 地址</string>
+    <string name="settings_saved_success">配置已保存</string>
     <style name="Theme.OculusPersistentCommDemo" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/md_theme_primary</item>
         <item name="colorOnPrimary">@color/md_theme_on_primary</item>

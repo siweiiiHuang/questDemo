@@ -127,19 +127,23 @@
                 android:inputType="textNoSuggestions" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.materialswitch.MaterialSwitch
+        <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/switchWatchdog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/settings_label_watchdog" />
+            android:text="@string/settings_label_watchdog"
+            android:textOn="@string/settings_label_watchdog"
+            android:textOff="@string/settings_label_watchdog" />
 
-        <com.google.android.material.materialswitch.MaterialSwitch
+        <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/switchTelemetry"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/settings_label_telemetry" />
+            android:text="@string/settings_label_telemetry"
+            android:textOn="@string/settings_label_telemetry"
+            android:textOff="@string/settings_label_telemetry" />
 
         <Button
             android:id="@+id/btnSaveConfig"

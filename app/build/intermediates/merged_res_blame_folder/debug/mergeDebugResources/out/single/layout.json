@@ -1,10 +1,18 @@
 [
     {
-        "merged": "com.example.oculusdemo.app-mergeDebugResources-37:/layout/activity_main.xml",
-        "source": "com.example.oculusdemo.app-main-40:/layout/activity_main.xml"
+        "merged": "com.example.oculusdemo.app-mergeDebugResources-43:/layout/activity_settings.xml",
+        "source": "com.example.oculusdemo.app-main-46:/layout/activity_settings.xml"
     },
     {
-        "merged": "com.example.oculusdemo.app-mergeDebugResources-37:/layout/item_log.xml",
-        "source": "com.example.oculusdemo.app-main-40:/layout/item_log.xml"
+        "merged": "C:\\Users\\siweiii\\.gradle\\daemon\\8.13\\com.example.oculusdemo.app-mergeDebugResources-43:\\layout\\item_log.xml",
+        "source": "C:\\Users\\siweiii\\.gradle\\daemon\\8.13\\com.example.oculusdemo.app-main-46:\\layout\\item_log.xml"
+    },
+    {
+        "merged": "C:\\Users\\siweiii\\.gradle\\daemon\\8.13\\com.example.oculusdemo.app-mergeDebugResources-43:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\siweiii\\.gradle\\daemon\\8.13\\com.example.oculusdemo.app-main-46:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\siweiii\\.gradle\\daemon\\8.13\\com.example.oculusdemo.app-mergeDebugResources-43:\\layout\\activity_settings.xml",
+        "source": "C:\\Users\\siweiii\\.gradle\\daemon\\8.13\\com.example.oculusdemo.app-main-46:\\layout\\activity_settings.xml"
     }
 ]

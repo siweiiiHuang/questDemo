@@ -1,4 +1,4 @@
-# Oculus 常驻通信 Demo
+~# Oculus 常驻通信 Demo
 
 本示例工程演示如何在 Meta Quest / Oculus 设备上实现一个具备 BLE / Wi-Fi 双通道、可常驻后台的通信服务。Demo 覆盖题目要求的核心点：后台常驻 Service、BLE 扫描与收发、WebSocket 通信、通道自动切换、AIDL 前后台交互以及基础日志功能。
 

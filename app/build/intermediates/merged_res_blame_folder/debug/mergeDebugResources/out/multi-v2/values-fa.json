@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.oculusdemo.app-mergeDebugResources-36:/values-fa/values-fa.xml",
+            "outputFile": "com.example.oculusdemo.app-mergeDebugResources-42:/values-fa/values-fa.xml",
             "map": [
                 {
                     "source": "C:\\Users\\siweiii\\.gradle\\caches\\8.13\\transforms\\8c6de7b71de0ee3e530f7262d4100345\\transformed\\material-1.12.0\\res\\values-fa\\values-fa.xml",
