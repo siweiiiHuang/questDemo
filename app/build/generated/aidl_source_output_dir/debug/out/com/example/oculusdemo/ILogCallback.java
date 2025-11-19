@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Using: C:\Users\siweiii\AppData\Local\Android\Sdk\build-tools\35.0.0\aidl.exe -pC:\Users\siweiii\AppData\Local\Android\Sdk\platforms\android-34\framework.aidl -oC:\project\android\app\build\generated\aidl_source_output_dir\debug\out -IC:\project\android\app\src\main\aidl -IC:\project\android\app\src\debug\aidl -IC:\Users\siweiii\.gradle\caches\8.13\transforms\48fc52ae1c984a47a4cc3bfa9d303ebd\transformed\core-1.13.1\aidl -IC:\Users\siweiii\.gradle\caches\8.13\transforms\57ef6dedd2f8a3d504957e1493cbbc60\transformed\versionedparcelable-1.1.1\aidl -dC:\Users\siweiii\AppData\Local\Temp\aidl6038199707316284145.d C:\project\android\app\src\main\aidl\com\example\oculusdemo\ILogCallback.aidl
+ * Using: C:\Users\siweiii\AppData\Local\Android\Sdk\build-tools\35.0.0\aidl.exe -pC:\Users\siweiii\AppData\Local\Android\Sdk\platforms\android-34\framework.aidl -oC:\project\android\app\build\generated\aidl_source_output_dir\debug\out -IC:\project\android\app\src\main\aidl -IC:\project\android\app\src\debug\aidl -IC:\Users\siweiii\.gradle\caches\8.13\transforms\48fc52ae1c984a47a4cc3bfa9d303ebd\transformed\core-1.13.1\aidl -IC:\Users\siweiii\.gradle\caches\8.13\transforms\57ef6dedd2f8a3d504957e1493cbbc60\transformed\versionedparcelable-1.1.1\aidl -dC:\Users\siweiii\AppData\Local\Temp\aidl2297802662698827409.d C:\project\android\app\src\main\aidl\com\example\oculusdemo\ILogCallback.aidl
  */
 package com.example.oculusdemo;
 public interface ILogCallback extends android.os.IInterface

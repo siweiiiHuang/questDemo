@@ -26,6 +26,9 @@ public final class ActivityMainBinding implements ViewBinding {
   public final Button btnSend;
 
   @NonNull
+  public final Button btnSettings;
+
+  @NonNull
   public final Button btnStart;
 
   @NonNull
@@ -47,11 +50,12 @@ public final class ActivityMainBinding implements ViewBinding {
   public final TextView tvPayload;
 
   private ActivityMainBinding(@NonNull ConstraintLayout rootView, @NonNull Button btnSend,
-      @NonNull Button btnStart, @NonNull Button btnStop, @NonNull EditText etMessage,
-      @NonNull RecyclerView rvLogs, @NonNull TextView tvConnection, @NonNull TextView tvLogTitle,
-      @NonNull TextView tvPayload) {
+      @NonNull Button btnSettings, @NonNull Button btnStart, @NonNull Button btnStop,
+      @NonNull EditText etMessage, @NonNull RecyclerView rvLogs, @NonNull TextView tvConnection,
+      @NonNull TextView tvLogTitle, @NonNull TextView tvPayload) {
     this.rootView = rootView;
     this.btnSend = btnSend;
+    this.btnSettings = btnSettings;
     this.btnStart = btnStart;
     this.btnStop = btnStop;
     this.etMessage = etMessage;
@@ -91,6 +95,12 @@ public final class ActivityMainBinding implements ViewBinding {
       id = R.id.btnSend;
       Button btnSend = ViewBindings.findChildViewById(rootView, id);
       if (btnSend == null) {
+        break missingId;
+      }
+
+      id = R.id.btnSettings;
+      Button btnSettings = ViewBindings.findChildViewById(rootView, id);
+      if (btnSettings == null) {
         break missingId;
       }
 
@@ -136,8 +146,8 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityMainBinding((ConstraintLayout) rootView, btnSend, btnStart, btnStop,
-          etMessage, rvLogs, tvConnection, tvLogTitle, tvPayload);
+      return new ActivityMainBinding((ConstraintLayout) rootView, btnSend, btnSettings, btnStart,
+          btnStop, etMessage, rvLogs, tvConnection, tvLogTitle, tvPayload);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

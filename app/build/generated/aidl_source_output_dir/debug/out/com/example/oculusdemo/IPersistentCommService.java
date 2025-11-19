@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Using: C:\Users\siweiii\AppData\Local\Android\Sdk\build-tools\35.0.0\aidl.exe -pC:\Users\siweiii\AppData\Local\Android\Sdk\platforms\android-34\framework.aidl -oC:\project\android\app\build\generated\aidl_source_output_dir\debug\out -IC:\project\android\app\src\main\aidl -IC:\project\android\app\src\debug\aidl -IC:\Users\siweiii\.gradle\caches\8.13\transforms\48fc52ae1c984a47a4cc3bfa9d303ebd\transformed\core-1.13.1\aidl -IC:\Users\siweiii\.gradle\caches\8.13\transforms\57ef6dedd2f8a3d504957e1493cbbc60\transformed\versionedparcelable-1.1.1\aidl -dC:\Users\siweiii\AppData\Local\Temp\aidl17503154277874510994.d C:\project\android\app\src\main\aidl\com\example\oculusdemo\IPersistentCommService.aidl
+ * Using: C:\Users\siweiii\AppData\Local\Android\Sdk\build-tools\35.0.0\aidl.exe -pC:\Users\siweiii\AppData\Local\Android\Sdk\platforms\android-34\framework.aidl -oC:\project\android\app\build\generated\aidl_source_output_dir\debug\out -IC:\project\android\app\src\main\aidl -IC:\project\android\app\src\debug\aidl -IC:\Users\siweiii\.gradle\caches\8.13\transforms\48fc52ae1c984a47a4cc3bfa9d303ebd\transformed\core-1.13.1\aidl -IC:\Users\siweiii\.gradle\caches\8.13\transforms\57ef6dedd2f8a3d504957e1493cbbc60\transformed\versionedparcelable-1.1.1\aidl -dC:\Users\siweiii\AppData\Local\Temp\aidl16689130939233564333.d C:\project\android\app\src\main\aidl\com\example\oculusdemo\IPersistentCommService.aidl
  */
 package com.example.oculusdemo;
 public interface IPersistentCommService extends android.os.IInterface
@@ -21,6 +21,9 @@ public interface IPersistentCommService extends android.os.IInterface
     {
     }
     @Override public void unregisterCallback(com.example.oculusdemo.ILogCallback callback) throws android.os.RemoteException
+    {
+    }
+    @Override public void reloadConfig() throws android.os.RemoteException
     {
     }
     @Override
@@ -101,6 +104,12 @@ public interface IPersistentCommService extends android.os.IInterface
           com.example.oculusdemo.ILogCallback _arg0;
           _arg0 = com.example.oculusdemo.ILogCallback.Stub.asInterface(data.readStrongBinder());
           this.unregisterCallback(_arg0);
+          reply.writeNoException();
+          break;
+        }
+        case TRANSACTION_reloadConfig:
+        {
+          this.reloadConfig();
           reply.writeNoException();
           break;
         }
@@ -199,12 +208,27 @@ public interface IPersistentCommService extends android.os.IInterface
           _data.recycle();
         }
       }
+      @Override public void reloadConfig() throws android.os.RemoteException
+      {
+        android.os.Parcel _data = android.os.Parcel.obtain();
+        android.os.Parcel _reply = android.os.Parcel.obtain();
+        try {
+          _data.writeInterfaceToken(DESCRIPTOR);
+          boolean _status = mRemote.transact(Stub.TRANSACTION_reloadConfig, _data, _reply, 0);
+          _reply.readException();
+        }
+        finally {
+          _reply.recycle();
+          _data.recycle();
+        }
+      }
     }
     static final int TRANSACTION_startSession = (android.os.IBinder.FIRST_CALL_TRANSACTION + 0);
     static final int TRANSACTION_stopSession = (android.os.IBinder.FIRST_CALL_TRANSACTION + 1);
     static final int TRANSACTION_sendMessage = (android.os.IBinder.FIRST_CALL_TRANSACTION + 2);
     static final int TRANSACTION_registerCallback = (android.os.IBinder.FIRST_CALL_TRANSACTION + 3);
     static final int TRANSACTION_unregisterCallback = (android.os.IBinder.FIRST_CALL_TRANSACTION + 4);
+    static final int TRANSACTION_reloadConfig = (android.os.IBinder.FIRST_CALL_TRANSACTION + 5);
   }
   /** @hide */
   public static final java.lang.String DESCRIPTOR = "com.example.oculusdemo.IPersistentCommService";
@@ -213,4 +237,5 @@ public interface IPersistentCommService extends android.os.IInterface
   public void sendMessage(java.lang.String message) throws android.os.RemoteException;
   public void registerCallback(com.example.oculusdemo.ILogCallback callback) throws android.os.RemoteException;
   public void unregisterCallback(com.example.oculusdemo.ILogCallback callback) throws android.os.RemoteException;
+  public void reloadConfig() throws android.os.RemoteException;
 }
