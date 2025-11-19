@@ -81,6 +81,17 @@ class PersistentCommService : LifecycleService() {
         }
     }
 
+    // Quest 真机使用：将 192.168.31.226 替换为你的 PC/手机 IP（示例）
+    // 模拟器使用：10.0.2.2
+    private var wifiEndpoint: Uri = Uri.parse("ws://192.168.31.226:8080")  // 当前 PC IP
+    // private var wifiEndpoint: Uri = Uri.parse("ws://10.0.2.2:8080")  // 模拟器地址
+    private val bleConfig = BleChannelManager.Config(
+        deviceName = "QuestPeripheral",
+        serviceUuid = UUID.fromString("0000feed-0000-1000-8000-00805f9b34fb"),
+        writeCharacteristicUuid = UUID.fromString("0000beef-0000-1000-8000-00805f9b34fb"),
+        notifyCharacteristicUuid = UUID.fromString("0000beee-0000-1000-8000-00805f9b34fb")
+    )
+
     private val binder = object : IPersistentCommService.Stub() {
         override fun startSession() {
             startCommunication()
