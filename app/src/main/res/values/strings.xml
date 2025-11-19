@@ -5,11 +5,27 @@
     <string name="btn_start_service">启动服务</string>
     <string name="btn_stop_service">停止服务</string>
     <string name="btn_send_message">发送字符串</string>
+    <string name="btn_open_settings">配置</string>
     <string name="input_hint_message">输入要发送的字符串</string>
     <string name="log_title">最近日志</string>
     <string name="connection_state_wifi">Wi-Fi</string>
     <string name="connection_state_ble">BLE</string>
     <string name="connection_state_idle">未连接</string>
+    <string name="settings_label_wifi_endpoint">WebSocket 地址</string>
+    <string name="settings_label_heartbeat_interval">心跳间隔（秒）</string>
+    <string name="settings_label_reconnect_attempts">最大重连次数</string>
+    <string name="settings_label_reconnect_initial">首次重连延迟（毫秒）</string>
+    <string name="settings_label_reconnect_max">最大重连延迟（毫秒）</string>
+    <string name="settings_label_ble_name">BLE 设备名</string>
+    <string name="settings_label_ble_service">BLE Service UUID</string>
+    <string name="settings_label_ble_write">BLE 写特征 UUID</string>
+    <string name="settings_label_ble_notify">BLE 通知特征 UUID</string>
+    <string name="settings_label_watchdog">启用后台守护</string>
+    <string name="settings_label_telemetry">启用指标上报</string>
+    <string name="settings_btn_save">保存</string>
+    <string name="settings_saved_success">配置已保存</string>
+    <string name="settings_invalid_uuid">请输入合法的 UUID</string>
+    <string name="settings_invalid_number">请输入合法的数字</string>
 </resources>
 
 

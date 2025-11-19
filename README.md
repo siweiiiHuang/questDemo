@@ -5,6 +5,9 @@
 ## 功能概览
 
 - **后台常驻 Service**：`PersistentCommService` 以前台服务形式常驻运行，并监听网络变化，避免在运行 VR App 时被系统杀死。
+- **自恢复与守护**：通过 `WorkManager` 周期心跳、`ResurrectReceiver` 以及 `ServiceHeartbeatWorker`，即便系统因低内存/幽灵进程治理杀死后台，也会在几秒内重新拉起 Service。
+- **守护指标与远程开关**：`ConfigRepository` 可远程控制是否启用守护/遥测，`ServiceMetrics` 将重启次数、心跳超时、重连次数落地，便于线上观测。
+- **本地化配置面板**：新增 `SettingsActivity`，可在设备上修改 WebSocket/BLE 配置、心跳间隔及守护开关并热更新 Service。
 - **Wi-Fi 通信**：通过 `WifiChannelClient` 使用 WebSocket 与 PC / 手机通信。可收发字符串消息。
 - **BLE 通信**：`BleChannelManager` 负责扫描特定设备（默认 `QuestPeripheral`）并与指定 Service / Characteristic 建立 GATT 连接，收发字符串。
 - **自动通道切换**：若检测到 Wi-Fi 可用则优先建立 WebSocket；否则自动回退到 BLE，并在 Wi-Fi 恢复时再次尝试切换，确保不丢消息。
@@ -28,6 +31,7 @@
    - 若需要将日志导出，可向 `LogExportService` 发送 `Intent`（Action：`com.example.oculusdemo.action.EXPORT_LOG`）。
 
 4. **运行 Demo**
+- **参数调节**：主页点击 “配置” 进入 `SettingsActivity`，可在线调整 WebSocket/BLE 参数、心跳间隔、重连策略、守护与遥测开关。保存后会向 `PersistentCommService` 发送 `ACTION_APPLY_CONFIG` 并热更新。
    - 使用 `adb install` 将 APK 部署至 Quest 设备。
    - 启动 `Oculus 常驻通信 Demo`，点击 “启动服务” 按钮后，Service 将常驻运行并自动选择通道。
    - 输入字符串点击 “发送字符串” 可把消息发往当前通道。
@@ -53,10 +57,10 @@
 
 ## 后续扩展建议
 
-- 引入 `WorkManager`/`JobScheduler` 监控 Service 存活。
 - 为 WebSocket 增加心跳与重连策略。
 - 添加本地配置界面，支持修改 WebSocket 地址、BLE UUID 等参数。
 - 集成单元/仪表化测试验证通道切换与日志功能。
+  - 当前已覆盖 `ReconnectPolicy` 单元测试，可继续补充对 Service 层的集成验证。
 
 ## 目录结构
 

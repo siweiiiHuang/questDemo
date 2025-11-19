@@ -109,6 +109,9 @@ class MainActivity : AppCompatActivity() {
             binding.etMessage.text?.clear()
             service?.sendMessage(message)
         }
+        binding.btnSettings.setOnClickListener {
+            startActivity(Intent(this, SettingsActivity::class.java))
+        }
     }
 
     private fun requestNeededPermissions() {

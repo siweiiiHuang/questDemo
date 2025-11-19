@@ -8,6 +8,7 @@ interface IPersistentCommService {
     void sendMessage(String message);
     void registerCallback(ILogCallback callback);
     void unregisterCallback(ILogCallback callback);
+    void reloadConfig();
 }
 
 

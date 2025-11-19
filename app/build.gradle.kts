@@ -54,6 +54,7 @@ dependencies {
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.5")
     implementation("androidx.lifecycle:lifecycle-service:2.8.5")
+    implementation("androidx.work:work-runtime-ktx:2.9.1")
     implementation("androidx.activity:activity-ktx:1.9.2")
     implementation("androidx.fragment:fragment-ktx:1.8.3")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
